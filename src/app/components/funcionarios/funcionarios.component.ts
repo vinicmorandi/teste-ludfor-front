@@ -6,6 +6,8 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { ButtonModule } from 'primeng/button';
 import { SupabaseService } from '../../services/supabase/supabase.service';
 import { FuncionariosFormComponent } from '../funcionarios-form/funcionarios-form.component';
+import { ToastService } from 'angular-toastify';
+
 
 @Component({
   selector: 'app-funcionarios',
@@ -19,7 +21,7 @@ import { FuncionariosFormComponent } from '../funcionarios-form/funcionarios-for
   styleUrl: './funcionarios.component.scss',
 })
 export class FuncionariosComponent {
-  constructor(private supabaseService: SupabaseService) {}
+  constructor(private supabaseService: SupabaseService, private toastService: ToastService) {}
 
   // Colunas dos funcionários para criar a tabela
   colunasFuncionarios: Array<Coluna> = [
@@ -115,6 +117,22 @@ export class FuncionariosComponent {
   editar = (registro: any) => {
     this.dados = registro;
     this.showDialog();
+  };
+  
+  // Exclui o funcionário
+  async excluir(registro: any) {
+    const { error } = await this.supabaseService.supabase
+      .from('funcionarios')
+      .delete()
+      .eq('id', registro.id)
+
+    if (error) {
+      this.toastService.error('Erro ao excluir funcionário');
+      this.toastService.error(error.message);
+    } else {
+      this.toastService.success('Funcionário excluído com sucesso!');
+      this.getFuncionarios();
+    }
   };
 
   // Esconde a modal, reseta os dados, e atualiza a tabela de funcionários

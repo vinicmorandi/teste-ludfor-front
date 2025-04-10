@@ -10,6 +10,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     --p-mask-background: rgba(0, 0, 0, 0) !important;
   }
   
+  p-input-mask {
+    .p-inputtext {
+      width: 100%;
+    }
+  }
+  
   --p-mask-color: #10b981 !important;
   --p-button-sm-padding-x: 0.3rem !important;
   --p-button-sm-padding-y: 0.3rem !important;

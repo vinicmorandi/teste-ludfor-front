@@ -108,7 +108,7 @@ export class LoginComponent {
       tipo: 'text',
       config: {
         required: true,
-        maxLength: 60,
+        maxLength: 20,
         placeholder: 'NomeLegal7921',
       },
     },
@@ -118,17 +118,18 @@ export class LoginComponent {
       tipo: 'text',
       config: {
         required: true,
-        maxLength: 60,
+        maxLength: 80,
         placeholder: 'Fulano da Silva',
       },
     },
     {
       key: 'telefone',
       texto: 'Telefone',
-      tipo: 'text',
+      tipo: 'mask',
       config: {
-        maxLength: 20,
+        maxLength: 11,
         placeholder: '(54) 99968-0612',
+        mask:"(99) 99999-9999"
       },
     },
   ];
@@ -146,15 +147,14 @@ export class LoginComponent {
     ]),
     username: new FormControl<string | null>(null, [
       Validators.required,
-      Validators.maxLength(60),
+      Validators.maxLength(20),
     ]),
     nome_completo: new FormControl<string | null>(null, [
       Validators.required,
-      Validators.maxLength(20),
+      Validators.maxLength(80),
     ]),
     telefone: new FormControl<string | null>(null, [
-      Validators.required,
-      Validators.maxLength(20),
+      Validators.maxLength(11),
     ]),
   });
 

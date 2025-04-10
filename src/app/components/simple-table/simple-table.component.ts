@@ -23,4 +23,5 @@ export class SimpleTableComponent {
   @Input() registros!: Array<any>;
   @Input() loading!: boolean;
   @Output("editar") editar: EventEmitter<any> = new EventEmitter();
+  @Output("excluir") excluir: EventEmitter<any> = new EventEmitter();
 }

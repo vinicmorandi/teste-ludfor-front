@@ -53,7 +53,7 @@ export class FuncionariosFormComponent {
       tipo: 'text',
       config: {
         required: true,
-        maxLength: 20,
+        maxLength: 80,
         placeholder: 'Fulano da Silva',
       },
     },
@@ -71,12 +71,12 @@ export class FuncionariosFormComponent {
     {
       key: 'celular',
       texto: 'Celular',
-      tipo: 'text',
+      tipo: 'mask',
       config: {
         required: true,
-        maxLength: 20,
-        mask: 'nanana',
+        maxLength: 11,
         placeholder: '(54) 99968-0612',
+        mask:"(99) 99999-9999"
       },
     },
     {
@@ -84,9 +84,9 @@ export class FuncionariosFormComponent {
       texto: 'Ramal',
       tipo: 'text',
       config: {
-        required: true,
-        maxLength: 20,
+        maxLength: 10,
         placeholder: '0000',
+        filter: 'num'
       },
     },
     {
@@ -95,7 +95,7 @@ export class FuncionariosFormComponent {
       tipo: 'text',
       config: {
         required: true,
-        maxLength: 60,
+        maxLength: 120,
         placeholder: 'São Francisco',
       },
     },
@@ -104,8 +104,7 @@ export class FuncionariosFormComponent {
       texto: 'Complemento',
       tipo: 'text',
       config: {
-        required: true,
-        maxLength: 60,
+        maxLength: 120,
         placeholder: 'Apto, Sala, Condomínio, etc.',
       },
     },
@@ -114,8 +113,7 @@ export class FuncionariosFormComponent {
       texto: 'Logradouro',
       tipo: 'text',
       config: {
-        required: true,
-        maxLength: 60,
+        maxLength: 80,
         placeholder: 'Avenida',
       },
     },
@@ -124,9 +122,9 @@ export class FuncionariosFormComponent {
       texto: 'Número',
       tipo: 'text',
       config: {
-        required: true,
-        maxLength: 60,
+        maxLength: 15,
         placeholder: '710',
+        filter: 'num'
       },
     },
     {
@@ -135,7 +133,7 @@ export class FuncionariosFormComponent {
       tipo: 'text',
       config: {
         required: true,
-        maxLength: 60,
+        maxLength: 80,
         placeholder: 'Bento Gonçalves',
       },
     },
@@ -145,7 +143,7 @@ export class FuncionariosFormComponent {
       tipo: 'text',
       config: {
         required: true,
-        maxLength: 60,
+        maxLength: 40,
         placeholder: 'Rio Grande do Sul',
       },
     },
@@ -163,45 +161,41 @@ export class FuncionariosFormComponent {
   funcionarioForm = new FormGroup({
     nome: new FormControl<string | null>(null, [
       Validators.required,
-      Validators.maxLength(20),
+      Validators.maxLength(80),
     ]),
     email: new FormControl<string | null>(null, [
       Validators.required,
       Validators.email,
-      Validators.maxLength(20),
+      Validators.maxLength(60),
     ]),
     celular: new FormControl<string | null>(null, [
       Validators.required,
-      Validators.maxLength(20),
+      Validators.maxLength(11),
     ]),
     ativo: new FormControl<string | null>(null, [Validators.required]),
     ramal: new FormControl<string | null>(null, [
-      Validators.required,
-      Validators.maxLength(20),
+      Validators.maxLength(10),
     ]),
     bairro: new FormControl<string | null>(null, [
       Validators.required,
-      Validators.maxLength(20),
+      Validators.maxLength(120),
     ]),
     complemento: new FormControl<string | null>(null, [
-      Validators.required,
-      Validators.maxLength(20),
+      Validators.maxLength(120),
     ]),
     logradouro: new FormControl<string | null>(null, [
-      Validators.required,
-      Validators.maxLength(20),
+      Validators.maxLength(80),
     ]),
     numero: new FormControl<string | null>(null, [
-      Validators.required,
-      Validators.maxLength(20),
+      Validators.maxLength(15),
     ]),
     cidade: new FormControl<string | null>(null, [
       Validators.required,
-      Validators.maxLength(20),
+      Validators.maxLength(80),
     ]),
     estado: new FormControl<string | null>(null, [
       Validators.required,
-      Validators.maxLength(20),
+      Validators.maxLength(40),
     ]),
   });
 

@@ -18,8 +18,9 @@
   </ng-template>
   <ng-template #body let-registro>
     <tr>
-      <td>
+      <td class="flex space-x-1">
         <p-button size="small" (click)="this.editar.emit(registro)" icon="pi pi-pen-to-square" aria-label="Editar" severity="info"  />
+        <p-button size="small" (click)="this.excluir.emit(registro)" icon="pi pi-trash" aria-label="Excluir" severity="danger"  />
       </td>
 
       @for (coluna of colunas; track coluna.key) {
