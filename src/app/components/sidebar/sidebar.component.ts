@@ -1,16 +1,21 @@
 import { Component } from '@angular/core';
-import { UsuarioService } from '../../services/usuario.service';
+import { SupabaseService } from '../../services/supabase/supabase.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
   imports: [],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss'
+  styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
-  constructor (private usuarioService: UsuarioService) { }
+  constructor(
+    private supabaseService: SupabaseService,
+    private router: Router
+  ) {}
 
+  // Desloga o usuário do sistema
   deslogar = () => {
-    this.usuarioService.deslogar()
-  }
+    this.supabaseService.signOut();
+  };
 }

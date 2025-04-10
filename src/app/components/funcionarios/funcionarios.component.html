@@ -2,13 +2,25 @@
   <div>
     <app-sidebar></app-sidebar>
   </div>
-  <div class="flex pt-10 pl-10">
+  <div class="pt-10 px-10 flex-1">
     <main>
       <h1 class="text-3xl mb-3">Funcionários</h1>
       <section class="surface-card p-4 shadow-2 border-round w-full">
+        <div class="mb-4">
+          <p-button (click)="showDialog()" label="Adicionar Funcionário" />
+        </div>
+        @if (visible) {
+        <app-funcionarios-form
+          [dados]="dados"
+          (hideForm)="hide()"
+        ></app-funcionarios-form>
+        }
+
         <app-simple-table
           [colunas]="colunasFuncionarios"
           [registros]="registrosFuncionarios"
+          [loading]="loading"
+          (editar)="editar($event)"
         ></app-simple-table>
       </section>
     </main>

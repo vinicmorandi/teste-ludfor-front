@@ -5,10 +5,12 @@
   [rows]="10"
   [rowsPerPageOptions]="[10, 25, 50]"
   [paginator]="true"
+  [loading]="loading"
   [tableStyle]="{ 'min-width': '75rem' }"
 >
   <ng-template #header>
     <tr>
+      <th></th>
       @for (coluna of colunas; track coluna.key) {
         <th>{{coluna.texto}}</th>
       }
@@ -16,6 +18,10 @@
   </ng-template>
   <ng-template #body let-registro>
     <tr>
+      <td>
+        <p-button size="small" (click)="this.editar.emit(registro)" icon="pi pi-pen-to-square" aria-label="Editar" severity="info"  />
+      </td>
+
       @for (coluna of colunas; track coluna.key) {
         @if (coluna.tipo === 'button') {
         <td>
@@ -26,8 +32,8 @@
         </td>
         }
         @else if (coluna.tipo === 'boolean') {
-        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">
-          {{ registro[coluna.key] ? coluna.config.true : coluna.config.false }}
+        <td>
+          <p-tag [value]="registro[coluna.key] ? coluna.config.true : coluna.config.false" [severity]="registro[coluna.key] ? 'success' : 'danger'" />
         </td>
         }
         @else {

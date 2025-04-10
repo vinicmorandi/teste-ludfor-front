@@ -1,5 +1,17 @@
 @use 'tailwindcss';
 @import "primeflex/primeflex.css";
+@import "primeicons/primeicons.css";
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+  p-table {
+    --p-mask-background: rgba(0, 0, 0, 0) !important;
+  }
+  
+  --p-mask-color: #10b981 !important;
+  --p-button-sm-padding-x: 0.3rem !important;
+  --p-button-sm-padding-y: 0.3rem !important;
+  --p-button-icon-only-width: 2rem !important;
+}

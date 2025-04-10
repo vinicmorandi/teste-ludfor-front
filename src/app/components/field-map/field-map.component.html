@@ -1,0 +1,45 @@
+<!-- Faz um mapa de todos os campos listados, de acordo com os tipos e as configurações passadas -->
+<!-- Também já mostra as validações necessárias -->
+
+<div [className]="formClass" [formGroup]="controlForm">
+  @for (field of fields; track field.key) { @if (field.tipo === 'check') {
+  <div>
+    <label [for]="field.key" class="block text-900 font-medium mb-2">
+      {{ field.texto }}
+    </label>
+    <p-toggleswitch [formControlName]="field.key" />
+  </div>
+  } @else {
+  <div>
+    <label [for]="field.key" class="block text-900 font-medium mb-2">
+      {{ field.texto }}
+    </label>
+    <input
+      [type]="field.tipo"
+      [name]="field.key"
+      [id]="field.key"
+      pInputText
+      class="w-full mb-0"
+      [placeholder]="field.config?.placeholder"
+      [required]="field.config?.required"
+      [formControlName]="field.key"
+    />
+    @if (controlForm.get(field.key) && controlForm.get(field.key)?.invalid &&
+    (controlForm.get(field.key)?.dirty || controlForm.get(field.key)?.touched))
+    {
+    <div class="text-sm mt-2 text-red-500">
+      @if (controlForm.get(field.key)?.hasError('required')) {
+      <div>O campo "{{ field.texto }}" é obrigatório.</div>
+      } @if (controlForm.get(field.key)?.hasError('email')) {
+      <div>O valor deve ser um email válido.</div>
+      } @if (controlForm.get(field.key)?.hasError('maxlength')) {
+      <div>
+        O campo "{{ field.texto }}" deve ter no máximo
+        {{ field.config?.maxLength }} caracteres.
+      </div>
+      }
+    </div>
+    }
+  </div>
+  } }
+</div>
